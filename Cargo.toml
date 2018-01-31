@@ -1,0 +1,7 @@
+[package]
+name = "shubito"
+version = "0.1.0"
+authors = ["Blas Rodriguez <bir@csis.dk>"]
+
+[dependencies]
+error-chain = "0.11.0"
