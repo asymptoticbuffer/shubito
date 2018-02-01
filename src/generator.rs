@@ -7,25 +7,29 @@ use error::*;
 
 const NBITS:usize = 256;
 
-pub fn blum_blum_shub(iterations: usize) -> Result<usize> {
+pub fn generate_random_number() -> Result<u64>{
+    blum_blum_shub(1_000)
+}
+
+fn blum_blum_shub(iterations: usize) -> Result<u64> {
     let p = random_prime(NBITS)?;
     let q = random_prime(NBITS)?;
     let m = p * q;
     Ok((0..iterations).fold(2, |acc, _| (acc * acc) % m))
 }
 
-fn random_prime(nbits: usize) -> Result<usize>{
+fn random_prime(nbits: usize) -> Result<u64>{
     let mut buff = vec![0u8; nbits];
     let _ = generate_entropy(&mut buff[..]);
-    let limit =  buff.iter().map(|x| *x as usize).sum();
+    let limit =  buff.iter().map(|x| *x as u64).sum();
     create_large_prime(limit)
 }
 
-fn create_large_prime(limit: usize) -> Result<usize>{
+fn create_large_prime(limit: u64) -> Result<u64>{
     // Using Sieve of Eratosthenes. Maybe another implementation?
     // FIX: non idiomatic
     if limit < 3 { return Ok(limit);}
-    let mut primes: Vec<usize> = Vec::with_capacity(limit / 10);
+    let mut primes: Vec<u64> = Vec::with_capacity(limit as usize / 10);
     // base case
     primes.push(2);
     for el in 3..limit + 1{
@@ -55,6 +59,10 @@ fn generate_entropy(buff: &mut [u8]) -> Result<()> {
 mod tests {
     use super::*;
 
+    #[test]
+    fn test_blum_blum_shub(){
+        assert!(blum_blum_shub(10_000).unwrap() > 10);
+    }
 
     #[test]
     fn test_random_prime(){
@@ -69,7 +77,7 @@ mod tests {
     }
 
     #[test]
-    fn test_generate_entroyp(){
+    fn test_generate_entropy(){
         let nbits = 10_0000;
         let mut buff = vec![0u8; nbits];
         generate_entropy(&mut buff[..]).unwrap();

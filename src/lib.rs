@@ -22,7 +22,7 @@ pub mod generator;
 mod tests {
     use super::*;
     #[test]
-    fn test_blum_blum_shub(){
-        assert!(generator::blum_blum_shub(10_000).unwrap() > 10);
+    fn test_generate_random_numb(){
+        assert!(generator::generate_random_number().unwrap() > 10);
     }
 }
