@@ -23,10 +23,6 @@ pub fn blum_blum_shub(iterations: usize) -> Result<u64> {
     Ok((0..iterations).fold(2, |acc, _| (acc * acc) % m))
 }
 
-pub fn prime_from_random_number(limit: u64) -> Result<u64>{
-    create_large_prime(limit)
-}
-
 fn random_prime(nbits: usize) -> Result<u64>{
     let mut buff = vec![0u8; nbits];
     let _ = generate_entropy(&mut buff[..]);
