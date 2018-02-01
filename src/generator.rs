@@ -9,7 +9,7 @@ const NBITS:usize = 256;
 
 pub fn generate_random_prime() -> Result<u64>{
     let bb = blum_blum_shub(1_000)?;
-    create_large_prime(bb % 100_000)
+    create_large_prime(bb % 10_000)
 }
 
 pub fn generate_random_number() -> Result<u64>{
