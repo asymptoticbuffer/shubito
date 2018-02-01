@@ -3,19 +3,7 @@
 #[macro_use]
 extern crate error_chain;
 
-pub mod error{
-	error_chain! {
-		types {
-			Error, ErrorKind, ResultExt, Result;
-		}
-
-		foreign_links {
-			Fmt(::std::fmt::Error);
-			Io(::std::io::Error);
-		}
-	}
-}
-
+pub mod error;
 pub mod generator;
 
 #[cfg(test)]
