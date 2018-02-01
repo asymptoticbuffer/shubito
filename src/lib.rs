@@ -13,4 +13,10 @@ mod tests {
     fn test_generate_random_numb(){
         assert!(generator::generate_random_number().unwrap() > 10);
     }
+
+    #[test]
+    fn test_generate_random_prime(){
+        assert!(generator::generate_random_prime().unwrap() > 10);
+    }
+
 }
