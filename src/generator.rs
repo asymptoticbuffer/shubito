@@ -7,9 +7,9 @@ use error::*;
 
 const NBITS:usize = 256;
 
-pub fn generate_random_prime() -> Result<u64>{
+pub fn generate_random_prime(limit: usize) -> Result<u64>{
     let bb = blum_blum_shub(1_000)?;
-    create_large_prime(bb % 10_000)
+    create_large_prime(bb % limit as u64)
 }
 
 pub fn generate_random_number() -> Result<u64>{
