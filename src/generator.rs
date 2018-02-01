@@ -11,7 +11,7 @@ pub fn generate_random_number() -> Result<u64>{
     blum_blum_shub(1_000)
 }
 
-fn blum_blum_shub(iterations: usize) -> Result<u64> {
+pub fn blum_blum_shub(iterations: usize) -> Result<u64> {
     let p = random_prime(NBITS)?;
     let q = random_prime(NBITS)?;
     let m = p * q;
